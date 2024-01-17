@@ -1,0 +1,15 @@
+h4 {
+    font-family: fantasy;
+    text-align: center;
+}
+
+body {
+    font-size: x-large;
+    font-family: fantasy;
+    text-align: center;
+    margin: auto;
+    padding: 4%;
+    height: auto;
+    flex-wrap: wrap;
+    background-image: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
+}
