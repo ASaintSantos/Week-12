@@ -1,15 +1,8 @@
 const URL = "https://659628cd04335332df8396fc.mockapi.io/api/1/users"
 
-async function getUsers() {
-fetch(URL)
-.then(res => res.json())
-.then(data => console.log(data))
-.catch((error) => console.error('Error:', error))
-}
 
-getUsers();
-
-$.get(URL).then(data => {
+function getUsers() {
+    $.get(URL).then(data => {
     data.map(user => {
         $('tbody').append(
             $(`
@@ -27,19 +20,35 @@ $.get(URL).then(data => {
         )
     })
 })
+}
+ getUsers();
 
 $('#submitUser').click(function () {
+    
+    // let newUser = {
+    //     fullName = 
+    // }
+    
     $.post(URL, {
-        fullName: $('#fullName').val(),
-        newAvatar: $('#newAvatar').val(),
+        id: $('updateId').val(),
+        name: $('#fullName').val(),
+        avatar: $('#newAvatar').val(),
     })
 })
+
+// let deleteUser = document.getElementById('URL');
+
+// while (URL.firstChild) {
+//     URL.removeChild(URL.firstChild);
+// }
+
 
 function deleteUser (id) {
     $.ajax(`${URL}/${id}`, {
         type: 'DELETE'
-    })
+    }) .then(getUsers(-1));
 }
+
 
 function updateUser() {
     let id = $('#updateId').val()
@@ -47,8 +56,8 @@ function updateUser() {
     $.ajax(`${URL}/${id}`, {
         method: 'PUT',
         data: {
-            fullName: $('#updateName').val(),
-            newAvatar: $('#updateAvatar').val(),
+            name: $('#updateName').val(),
+            avatar: $('#updateAvatar').val(),
          }
     })
 }
